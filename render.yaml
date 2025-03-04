@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: edible-landscapes
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: edible-landscapes-db
+          property: connectionString
+
+databases:
+  - name: edible-landscapes-db
+    plan: free
